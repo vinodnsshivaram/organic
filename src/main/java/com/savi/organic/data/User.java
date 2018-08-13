@@ -3,18 +3,18 @@ package com.savi.organic.data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Document(collection = "users")
+@Validated
 public class User {
     @Id
     private UUID id;
     @Indexed(unique = true)
-    @NotNull
-    @Size(min=8, max=10)
+    @Size(min = 1, max = 30, message = "error.username.size")
     private String username;
     private String password;
     private String authGroup;
